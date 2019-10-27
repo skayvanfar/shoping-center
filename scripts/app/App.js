@@ -1,15 +1,20 @@
 import React , {Component} from 'react'
 import { Row , Col } from 'antd';
 import Cookie from 'react-cookie';
+import ReactMixin from 'react-mixin';
+
+
 
 import Header from './section/Header';
 import Welcome from './section/Welcome';
 import ButtonCart from './section/ButtonCart';
 import Products from './section/Products';
 import Data from './../data';
+import Mixins from './../Mixins';
 
 
-export default class App extends Component {
+class App extends Component {
+
 
     constructor(props) {
         super(props);
@@ -21,6 +26,9 @@ export default class App extends Component {
 
         this.addToCart = this.addToCart.bind(this);
         this.removeOfCart = this.removeOfCart.bind(this);
+
+
+        this.success('hello world');
     }
 
     addToCart(key) {
@@ -59,3 +67,7 @@ export default class App extends Component {
     }
 
 }
+
+ReactMixin.onClass(App , Mixins.Logs);
+
+export default App;
