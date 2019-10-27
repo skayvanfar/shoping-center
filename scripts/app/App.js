@@ -1,6 +1,6 @@
 import React , {Component} from 'react'
 import { Row , Col } from 'antd';
-
+import Cookie from 'react-cookie';
 
 import Header from './section/Header';
 import Welcome from './section/Welcome';
@@ -15,7 +15,7 @@ export default class App extends Component {
 
         this.state = {
             products : Data,
-            orders : []
+            orders : ( typeof(Cookie.load('orders')) == "undefined" ? [] : Cookie.load('orders') )
         }
 
         this.addToCart = this.addToCart.bind(this);
@@ -24,6 +24,7 @@ export default class App extends Component {
     addToCart(key) {
         if(this.state.products[key].available && this.state.orders.indexOf(key) == -1) {
             this.state.orders.push(key);
+            Cookie.save('orders' , this.state.orders , { path : '/'});
             this.setState((prevState) => {
                 orders : prevState.orders
             });
