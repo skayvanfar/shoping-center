@@ -12,3 +12,17 @@
 .header_description {
   text-align: center;
 }
+
+.row-product {
+  margin: 20px auto;
+}
+
+.shop-card {
+  padding: 10px 16px;
+}
+
+.cart-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+}
