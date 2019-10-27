@@ -14,7 +14,19 @@ export default class App extends Component {
         super(props);
 
         this.state = {
-            products : Data
+            products : Data,
+            orders : []
+        }
+
+        this.addToCart = this.addToCart.bind(this);
+    }
+
+    addToCart(key) {
+        if(this.state.products[key].available && this.state.orders.indexOf(key) == -1) {
+            this.state.orders.push(key);
+            this.setState((prevState) => {
+                orders : prevState.orders
+            });
         }
     }
 
@@ -24,7 +36,7 @@ export default class App extends Component {
                 <Col span={12}>
                     <Header SelectedMenu="home" />
                     <Welcome title="Welcome To My Shop" />
-                    <Products products={this.state.products } />
+                    <Products products={this.state.products} addToCart={this.addToCart} orders={this.state.orders}/>
                 </Col>
             </Row>
         );

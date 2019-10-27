@@ -14,30 +14,30 @@ export default class Products extends Component {
   }
 
   renderProduct(key) {
-      return (
+    return (
         <Col key={key} span={8}>
-            <Product details={this.props.products[key] } />
+          <Product index={key} details={this.props.products[key] }  addToCart={this.props.addToCart} orders={this.props.orders}/>
         </Col>
-      );
+    );
   }
 
   renderRow(key) {
     return (
-      <Row key={key}>
-         {this.chunkProduct[key].map(this.renderProduct)}
-      </Row>
+        <Row key={key}>
+          {this.chunkProduct[key].map(this.renderProduct)}
+        </Row>
     );
   }
 
   render() {
     return (
-      <Row>
-        <Col span={24}>
-          <Row className="row-product">
+        <Row>
+          <Col span={24}>
+            <Row className="row-product">
               {Object.keys(this.chunkProduct).map(this.renderRow)}
-          </Row>
-        </Col>
-      </Row>
+            </Row>
+          </Col>
+        </Row>
     );
   }
 
