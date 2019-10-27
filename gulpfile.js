@@ -27,5 +27,5 @@ gulp.task('browserify' , function(){
 
 
 gulp.task('watch' , gulp.series('browserify', function() {
-  gulp.watch('./scripts/**/*.js' , gulp.series(browserify));
+  gulp.watch('./scripts/**/*/*.js' , gulp.series(browserify));
 }));

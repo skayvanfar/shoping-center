@@ -30,7 +30,7 @@ export default class Header extends Component {
                   selectedKeys={[this.state.current]}
                   mode="horizontal">
                 <Menu.Item key="home">
-                    <Icon type="home" /> <Link style={{ display:'inline-block' }} to="/">Home</Link>
+                    <Icon type="home" /> <Link style={{ display:'inline-block' }} to="/shoping-center/">Home</Link>
                 </Menu.Item>
                 <Menu.Item key="app">
                     <Icon type="appstore" />Products
