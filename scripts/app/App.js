@@ -3,6 +3,7 @@ import { Row , Col } from 'antd';
 import Cookie from 'react-cookie';
 import ReactMixin from 'react-mixin';
 
+import Axios from 'axios';
 
 
 import Header from './section/Header';
@@ -12,7 +13,6 @@ import Products from './section/Products';
 import Data from './../data';
 import Mixins from './../Mixins';
 
-
 class App extends Component {
 
 
@@ -20,7 +20,7 @@ class App extends Component {
         super(props);
 
         this.state = {
-            products : Data,
+            products : {},
             orders : ( typeof(Cookie.load('orders')) == "undefined" ? [] : Cookie.load('orders') )
         }
 
@@ -29,6 +29,18 @@ class App extends Component {
 
 
         this.success('hello world');
+    }
+
+    componentDidMount() {
+        Axios.get('http://localhost:3500/api/products')
+            .then((response) => {
+                this.setState({
+                    products : response.data
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     addToCart(key) {

@@ -4,41 +4,54 @@ import { Row , Col } from 'antd';
 import h from './../../helper';
 import Product from './Product';
 
-export default class Products extends Component {
+class Products extends Component {
 
-  constructor(props) {
-    super(props);
-    this.renderRow = this.renderRow.bind(this);
-    this.renderProduct = this.renderProduct.bind(this);
-    this.chunkProduct = h.array_chunk(Object.keys(this.props.products) , 3);
-  }
+    constructor(props) {
+        super(props);
+        this.renderRow = this.renderRow.bind(this);
+        this.renderProduct = this.renderProduct.bind(this);
+        this.chunkProduct = [];
+    }
 
-  renderProduct(key) {
-    return (
-        <Col key={key} span={8}>
-          <Product index={key} details={this.props.products[key] }  addToCart={this.props.addToCart} orders={this.props.orders}/>
-        </Col>
-    );
-  }
+    componentWillReceiveProps(newProps) {
+        this.chunkProduct = h.array_chunk(Object.keys(newProps.products) , 3)
+    }
 
-  renderRow(key) {
-    return (
-        <Row key={key}>
-          {this.chunkProduct[key].map(this.renderProduct)}
-        </Row>
-    );
-  }
+    renderProduct(key) {
+        return (
+            <Col key={key} span={8}>
+                <Product index={key} details={this.props.products[key] }  addToCart={this.props.addToCart} orders={this.props.orders}/>
+            </Col>
+        );
+    }
 
-  render() {
-    return (
-        <Row>
-          <Col span={24}>
-            <Row className="row-product">
-              {Object.keys(this.chunkProduct).map(this.renderRow)}
+    renderRow(key) {
+        return (
+            <Row key={key}>
+                {this.chunkProduct[key].map(this.renderProduct)}
             </Row>
-          </Col>
-        </Row>
-    );
-  }
+        );
+    }
+
+    render() {
+        return (
+            <Row>
+                <Col span={24}>
+                    <Row className="row-product">
+                        {Object.keys(this.chunkProduct).map(this.renderRow)}
+                    </Row>
+                </Col>
+            </Row>
+        );
+    }
 
 }
+
+Products.propTypes = {
+    addToCart : React.PropTypes.func.isRequired,
+    products : React.PropTypes.object.isRequired,
+    orders : React.PropTypes.array.isRequired
+};
+
+
+export default Products;

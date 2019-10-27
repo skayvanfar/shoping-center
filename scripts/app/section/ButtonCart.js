@@ -11,26 +11,29 @@ export default class ButtonCart extends Component {
     console.log('click', e);
   }
 
+
   renderMenu(key) {
-    return <Menu.Item key={key}>{ this.props.products[this.props.orders[key]].title} <Icon type="close" style={{ margin: 5 }}/></Menu.Item>
+    if(Object.keys(this.props.products).length != 0 ) {
+      return <Menu.Item key={key}>{ this.props.products[this.props.orders[key]].title} <Icon type="close" style={{ margin: 5 }}/></Menu.Item>
+    }
   }
 
   render() {
 
     let menu = (
-      <Menu onClick={(key) => this.props.removeOfCart(key)}>
+        <Menu onClick={(key) => this.props.removeOfCart(key)}>
           {Object.keys(this.props.orders).map(this.renderMenu)}
-      </Menu>
+        </Menu>
     );
 
     return (
-      <div className="cart-button">
-        <Dropdown overlay={menu}>
-          <Button type="primary" style={{ marginLeft : 8 }}>
-            Your Cart <Icon type="shopping-cart" />
-          </Button>
-        </Dropdown>
-      </div>
+        <div className="cart-button">
+          <Dropdown overlay={menu}>
+            <Button type="primary" style={{ marginLeft : 8 }}>
+              Your Cart <Icon type="shopping-cart" />
+            </Button>
+          </Dropdown>
+        </div>
     );
   }
 
