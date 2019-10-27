@@ -7,18 +7,18 @@ import Welcome from './section/Welcome';
 
 export default class App extends Component {
 
-  render() {
-      return (
-        <Row type="flex" justify="center">
-          <Col span={12}>
-              <Header SelectedMenu="home" />
-              <Welcome title="Welcome Tom My Shop" />
-              {/*             //
+    render() {
+        return (
+            <Row type="flex" justify="center">
+                <Col span={12}>
+                    <Header SelectedMenu="home" />
+                    <Welcome title="Welcome To My Shop" />
+                    {/*             //
                           // <Products />
                           // <Footer /> */}
-          </Col>
-        </Row>
-      );
-  }
+                </Col>
+            </Row>
+        );
+    }
 
 }
